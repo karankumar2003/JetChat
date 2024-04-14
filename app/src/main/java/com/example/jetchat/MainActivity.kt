@@ -9,9 +9,21 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.jetchat.screens.AppScreens
+import com.example.jetchat.screens.ChatListScreen
+import com.example.jetchat.screens.LoginScreen
+import com.example.jetchat.screens.ProfileScreen
+import com.example.jetchat.screens.SignUpScreen
+import com.example.jetchat.screens.SingleChatScreen
+import com.example.jetchat.screens.SingleStatusScreen
+import com.example.jetchat.screens.StatusListScreen
 import com.example.jetchat.ui.theme.JetChatTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,25 +34,45 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                        BottomNavHost()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    JetChatTheme {
-        Greeting("Android")
+fun BottomNavHost(
+) {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = AppScreens.LoginScreen.name,
+        modifier = Modifier
+    ) {
+        composable(route = AppScreens.ProfileScreen.name){
+            ProfileScreen()
+        }
+        composable(route = AppScreens.LoginScreen.name){
+            LoginScreen()
+        }
+        composable(route = AppScreens.ChatListScreen.name){
+            ChatListScreen()
+        }
+        composable(route = AppScreens.StatusListScreen.name){
+            StatusListScreen()
+        }
+        composable(route = AppScreens.SignUpScreen.name){
+            SignUpScreen()
+        }
+        composable(route = AppScreens.SingleChatScreen.name){
+            SingleChatScreen()
+        }
+        composable(route = AppScreens.SingleStatusScreen.name){
+            SingleStatusScreen()
+        }
+
+
     }
 }

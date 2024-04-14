@@ -1,4 +1,4 @@
-package com.example.jetchat.screens
+package com.example.jetchat.navigation
 
 import androidx.compose.runtime.Composable
 
