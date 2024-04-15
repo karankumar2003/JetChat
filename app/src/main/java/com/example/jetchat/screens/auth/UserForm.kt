@@ -46,7 +46,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun UserForm(
     modifier: Modifier = Modifier,
-    onButtonClick: (String, String) -> Unit,
+    onButtonClick: (String, String,String,String) -> Unit,
     buttonText: String,
     newUserText: String,
     signUpText: String,
@@ -150,7 +150,7 @@ fun UserForm(
                 },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(onDone = {
-                    if(isValid) onButtonClick(email,password)
+                    if(isValid) onButtonClick(name,number,email,password)
 
                 }),modifier = Modifier
                     .fillMaxWidth()
@@ -162,7 +162,7 @@ fun UserForm(
 
             Button(
                 onClick = {
-                    onButtonClick(email,password)
+                    onButtonClick(name,number,email,password)
                 },
                 enabled = isValid,
                 modifier = Modifier.fillMaxWidth()

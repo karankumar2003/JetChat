@@ -10,9 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,16 +20,15 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
+import com.example.jetchat.AppViewModel
 import com.example.jetchat.R
 
 
 @Composable
 fun SignUpScreen(
     navController: NavHostController,
-    viewModel: ViewModel 
+    viewModel: AppViewModel
 
 ) {
     val chatIconColor = if(isSystemInDarkTheme()){
@@ -59,9 +55,8 @@ fun SignUpScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            onButtonClick = { email, password ->
-                
-                
+            onButtonClick = { name, number, email, password ->
+                            viewModel.signUpUser(name,number,email,password)
             },
             buttonText = "Sign Up",
             newUserText = "Already have an account? ",
